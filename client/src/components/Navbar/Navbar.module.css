@@ -1,0 +1,39 @@
+.navContainer {
+    padding: 0 12.5%;
+
+    height: 90px;
+    background-image: linear-gradient(black, rgba(255,255,255,0));
+    
+    position: sticky;
+    top: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.appName {
+    color: white;
+
+    font-size: 48px;
+    font-weight: var(--fw-semi-bold);
+
+    text-decoration: none;
+}
+
+span {
+    color: var(--accent-3);
+}
+
+ul {
+    list-style: none;
+}
+
+.navOptions {
+    color: white;
+
+    font-size: 24px;
+    font-weight: var(--fw-semi-bold);
+    
+    text-decoration: none;
+}

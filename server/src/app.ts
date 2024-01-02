@@ -11,8 +11,13 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT;
 
-app.use(cors());
+const corsOptions = {
+    origin: process.env.CLIENT_ORIGIN
+}
+
+app.use(cors(corsOptions));
 app.use(express.json());
+app.use(express.static('public'));
 
 app.use(indexRouter);
 

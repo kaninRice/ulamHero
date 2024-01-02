@@ -6,10 +6,12 @@ class Database {
         mongoose.connect(DEFAULT_MONGO_URI).then(() => {
             console.log('[server] Connected to MongoDB');
         });
+
+        return;
     }
 
     close() {
-        mongoose.connection.close();
+        return mongoose.connection.close();
     }
 }
 

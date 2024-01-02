@@ -2,6 +2,11 @@
 
 #root {
   --font-family: 'Inter', sans-serif;
+  --fw-semi-bold: 600;
+  --fw-medium: 500;
+  --accent-1: #cec3c1;
+  --accent-2: #fbf9f5;
+  --accent-3: #7e892b;
 }
 
 html {
@@ -11,4 +16,6 @@ html {
 * {
   margin: 0;
   padding: 0;
+  
+  font-family: var(--font-family);
 }
