@@ -1,5 +1,5 @@
 import Home from "../pages/Home/Home";
-import Browse from '../pages/Browse';
+import Search from '../pages/Search/Search';
 
 const routes = [
     {
@@ -7,8 +7,8 @@ const routes = [
         element: <Home />
     },
     {
-        path: '/browse',
-        element: <Browse />
+        path: '/search',
+        element: <Search />
     },
 ];
 

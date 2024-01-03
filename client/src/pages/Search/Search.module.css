@@ -1,0 +1,135 @@
+.banner {
+    height: 30vh;
+    width: 100%;
+
+    background-image: url('../../assets/banner.jpg');
+    background-size: cover;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.bannerContent {
+    margin: 0 12.5% 16px 12.5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.queryBarContainer {
+    --border-radius: 16px;
+
+    font-weight: var(--fw-medium);
+    width: 743px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+
+    display: flex;
+    align-items: stretch;
+}
+
+.queryBarContainer button {
+    --border-radius: 16px;
+
+    flex-shrink: 0;
+    background-color: white;
+
+    padding-right: calc(var(--border-radius) / 2);
+    width: 89px;
+
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    border: none;
+}
+
+.closeIcon {
+    fill: var(--accent-1);
+}
+
+.contentSection {
+    flex-grow: 1;
+
+    width: 100%;
+    padding: 16px 12.5%;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+}
+
+h2 {
+    font-size: 3.2rem;
+    font-weight: var(--fw-semi-bold);
+}
+
+.contentSection ul {
+    width: 75%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 32px;
+}
+
+.contentSection li {
+    --item-height: 200px;
+    --border-radius: 16px;
+
+    height: var(--item-height);
+    width: 48%;
+
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+
+    overflow: hidden;
+
+    display: flex;
+    justify-content: start;
+    gap: 16px;
+}
+
+.contentSection li:hover {
+    transform: translate3d(-2px, -2px, 0px);
+}
+
+.contentSection img {
+    --item-height: 200px;
+    --border-radius: 16px;
+
+    width: var(--item-height);
+
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+    object-fit: cover;
+}
+
+.recipeName {
+    padding-top: 16px;
+
+    font-size: 2.4rem;
+    font-weight: var(--fw-semi-bold);
+}
+
+.recipeDescription {
+    padding-top: 6px;
+
+    font-size: 1.6rem;
+    font-weight: var(--fw-medium);
+
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 7;
+    display: -webkit-box;
+}
+
+@media only screen and (max-width: 900px) {
+    .contentSection ul {
+        flex-direction: column;
+    }
+
+    .contentSection li {
+        width: 100%;
+    }
+}

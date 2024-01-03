@@ -30,6 +30,14 @@ const RecipeSchema = new Schema({
     },
 });
 
+RecipeSchema.index({
+    name: 'text',
+    description: 'text',
+    ingredients: 'text',
+    steps: 'text',
+    notes: 'text'
+});
+
 const Recipe = model('recipes', RecipeSchema);
 
 export default Recipe;

@@ -30,7 +30,7 @@ input[type=text]:focus {
     outline: none;
 }
 
-button {
+.searchbarContainer button {
     --border-radius: 16px;
 
     flex-shrink: 0;

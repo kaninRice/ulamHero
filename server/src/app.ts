@@ -5,6 +5,7 @@ import cors from 'cors';
 import database from './db/conn';
 
 import indexRouter from './routes/index';
+import browseRouter from './routes/browse';
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.use(express.json());
 app.use(express.static('public'));
 
 app.use(indexRouter);
+app.use(browseRouter);
 
 app.listen(port, () => {
     database.connect();
