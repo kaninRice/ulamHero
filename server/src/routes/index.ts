@@ -3,7 +3,7 @@ import Recipe from '../models/recipe';
 
 const indexRouter = Router();
 
-indexRouter.get('/get-featured-recipes', async (req, res) => {
+indexRouter.get('/featured-recipes', async (req, res) => {
     const data = await Recipe.aggregate([
         { $sample: { size: 3 } },
     ]);

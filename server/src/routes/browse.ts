@@ -3,7 +3,7 @@ import Recipe from '../models/recipe';
 
 const browseRouter = Router();
 
-browseRouter.get('/search-recipe/:query', async (req, res) => {
+browseRouter.get('/search/:query', async (req, res) => {
     const data = await Recipe.find({ $text: { $search: req.params.query } });
     
     type recipeItem = {

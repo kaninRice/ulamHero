@@ -7,7 +7,7 @@ import { useSearchParams, SetURLSearchParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 
-import { SERVER_URL, QUERY_RECIPES_URI } from '../../config/config';
+import { SERVER_URL, SEARCH_URI } from '../../config/config';
 
 type recipeItem = {
     _id: string;
@@ -49,7 +49,7 @@ function QueryBar({
 }
 
 function Browse() {
-    const url = SERVER_URL + QUERY_RECIPES_URI;
+    const url = SERVER_URL + SEARCH_URI;
     const [searchQuery, setSearchQuery] = useSearchParams();
     const [searchResult, setSearchResult] = useState<recipeItem[]>([]);
 
