@@ -1,8 +1,8 @@
 import styles from './Search.module.css'
 import CloseIcon from '../../assets/icons/CloseIcon.svg?react';
-import { useEffect, useState } from 'react';
 
-import { useSearchParams, SetURLSearchParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useSearchParams, SetURLSearchParams, Link } from 'react-router-dom';
 
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
@@ -95,20 +95,28 @@ function Browse() {
                 <ul>
                     {searchResult.length > 0
                         ? searchResult.map((recipe) => (
-                            <li>
-                                <img src={SERVER_URL + recipe.imgPath} />
+                              <Link
+                                  to={`/recipe/${recipe._id}`}
+                                  className={styles.link}
+                              >
+                                  <li>
+                                      <img src={SERVER_URL + recipe.imgPath} />
 
-                                <div className={styles.recipeInformation}>
-                                    <p className={styles.recipeName}>
-                                        {recipe.name}
-                                    </p>
-                                    <p className={styles.recipeDescription}>
-                                        {recipe.description}
-                                    </p>
-                                </div>
-                            </li>
-                            
-                        ))
+                                      <div className={styles.recipeInformation}>
+                                          <p className={styles.recipeName}>
+                                              {recipe.name}
+                                          </p>
+                                          <p
+                                              className={
+                                                  styles.recipeDescription
+                                              }
+                                          >
+                                              {recipe.description}
+                                          </p>
+                                      </div>
+                                  </li>
+                              </Link>
+                          ))
                         : null}
                 </ul>
             </section>

@@ -74,6 +74,11 @@ h2 {
     row-gap: 32px;
 }
 
+.contentSection .link {
+    color: black;
+    text-decoration: none;
+}
+
 .contentSection li {
     --item-height: 200px;
     --border-radius: 16px;

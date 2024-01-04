@@ -1,5 +1,7 @@
 import styles from './Home.module.css'
+
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import Navbar from '../../components/Navbar/Navbar';
 import Searchbar from '../../components/Searchbar/Searchbar';
@@ -60,10 +62,12 @@ function Home() {
                 <ul>
                     {featuredRecipes.length > 0 &&
                         featuredRecipes.map((recipe) => (
-                            <li>
-                                <img src={SERVER_URL + recipe.imgPath} />
-                                <p>{recipe.name}</p>
-                            </li>
+                            <Link to={`/recipe/${recipe._id}`} className={styles.link}>
+                                <li>
+                                    <img src={SERVER_URL + recipe.imgPath} />
+                                    <p>{recipe.name}</p>
+                                </li>
+                            </Link>
                         ))}
                 </ul>
             </section>

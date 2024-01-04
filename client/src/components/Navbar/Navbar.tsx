@@ -12,7 +12,7 @@ function Navbar() {
             </h1>
             <ul>
                 <li>
-                    <Link to="/browse" className={styles.navOptions}>
+                    <Link to="/search" className={styles.navOptions}>
                         Browse
                     </Link>
                 </li>

@@ -1,14 +1,19 @@
-import Home from "../pages/Home/Home";
+import Home from '../pages/Home/Home';
 import Search from '../pages/Search/Search';
+import Recipe from '../pages/Recipe/Recipe';
 
 const routes = [
     {
-        path: "/",
-        element: <Home />
+        path: '/',
+        element: <Home />,
     },
     {
         path: '/search',
-        element: <Search />
+        element: <Search />,
+    },
+    {
+        path: '/recipe/:recipeId',
+        element: <Recipe />,
     },
 ];
 

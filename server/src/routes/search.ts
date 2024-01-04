@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import Recipe from '../models/recipe';
 
-const browseRouter = Router();
+const searchRouter = Router();
 
-browseRouter.get('/search/:query', async (req, res) => {
+searchRouter.get('/search/:query', async (req, res) => {
     const data = await Recipe.find({ $text: { $search: req.params.query } });
     
     type recipeItem = {
@@ -27,4 +27,4 @@ browseRouter.get('/search/:query', async (req, res) => {
     res.json(recipeItemList);
 })
 
-export default browseRouter;
+export default searchRouter;
