@@ -41,9 +41,10 @@ userRouter.put('/user/bookmarks/add', verifyToken, async (req, res) => {
     const recipeid = req.body.recipeId;
 
     try {
+
         await User.findOneAndUpdate(
             { _id: o_userId },
-            { $push: { bookmarkList: recipeid } }
+            { $addToSet: { bookmarkList: recipeid } }
         );
 
         res.status(200).json({ message: 'bookmark added' });
