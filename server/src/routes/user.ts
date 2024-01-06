@@ -10,43 +10,58 @@ const userRouter = Router();
 
 userRouter.get('/user/bookmarks/get', verifyToken, async (req, res) => {
     const o_userId = new ObjectId(res.locals.id);
-    const bookmarkList = await User.findOne({ _id: o_userId }).select('bookmarkList -_id');
 
-    const o_bookmarkList = <ObjectId[]>[];
-    
-    (<any>bookmarkList?.bookmarkList).forEach((recipeId: string) => {
-        o_bookmarkList.push(new ObjectId(recipeId));
-    });
+    try {
+        const bookmarkList = await User.findOne({ _id: o_userId }).select(
+            'bookmarkList -_id'
+        );
 
-    
-    const data = await Recipe.find({
-        '_id': { $in: o_bookmarkList }
-    })
+        const o_bookmarkList = <ObjectId[]>[];
 
-    data.forEach((recipe) => {
-        recipe.imgPath = `/images/${recipe.imgPath}`;
-    });
-    
-    res.json(data);
+        (<any>bookmarkList?.bookmarkList).forEach((recipeId: string) => {
+            o_bookmarkList.push(new ObjectId(recipeId));
+        });
+
+        const data = await Recipe.find({
+            _id: { $in: o_bookmarkList },
+        });
+
+        data.forEach((recipe) => {
+            recipe.imgPath = `/images/${recipe.imgPath}`;
+        });
+
+        res.status(200).json(data);
+    } catch (err) {
+        res.status(500).json({ type: err });
+    }
 });
 
 userRouter.put('/user/bookmarks/add', verifyToken, async (req, res) => {
     const o_userId = new ObjectId(res.locals.id);
     const recipeid = req.body.recipeId;
 
-    const result = await User.findOneAndUpdate(
-        { _id: o_userId },
-        { $push: { bookmarkList: recipeid } }
-    );
+    try {
+        await User.findOneAndUpdate(
+            { _id: o_userId },
+            { $push: { bookmarkList: recipeid } }
+        );
 
-    res.status(200).json({ message: 'bookmark added' })
+        res.status(200).json({ message: 'bookmark added' });
+    } catch (err) {
+        res.status(500).json({ type: err });
+    }
 });
 
 userRouter.delete('/user/delete', verifyToken, async (req, res) => {
     const o_userId = new ObjectId(res.locals.id);
 
-    const result = await User.deleteOne({ _id: o_userId })
-    res.status(200).json({ message: 'account deleted' });
+    try {
+        await User.deleteOne({ _id: o_userId });
+
+        res.status(200).json({ message: 'account deleted' });
+    } catch (err) {
+        res.status(500).json({ type: err });
+    }
 })
 
 export default userRouter;

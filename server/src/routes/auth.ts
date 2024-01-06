@@ -31,7 +31,6 @@ authRouter.post('/register', async (req, res) => {
 
 authRouter.post('/login', async (req, res) => {
     const { username, password } = req.body;
-    console.log(req.body);
 
     try {
         const user: IUser | null = await User.findOne({ username });
@@ -46,7 +45,7 @@ authRouter.post('/login', async (req, res) => {
             return res.status(400).json({ message: 'wrong credentials' });
         }
 
-        const token = jwt.sign({ id: user._id }, 'secret');
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET!);
         res.status(200).json({ token, userID: user._id });
     } catch (err) {
         res.status(500).json({ type: err });
@@ -58,7 +57,7 @@ export const verifyToken = (req: any, res: any, next: any) => {
 
     if (authHeader) {
         const token = req.headers.authorization.split(' ')[1];
-        const decoded = jwt.verify(token, 'secret');
+        const decoded = jwt.verify(token, process.env.JWT_SECRET!);
         const userId = (<any>decoded).id
         res.locals.id = userId;
         next();

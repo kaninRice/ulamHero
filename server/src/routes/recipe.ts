@@ -7,12 +7,18 @@ const recipeRouter = Router();
 
 recipeRouter.get('/recipes/:id', async (req, res) => {
     const o_id = new ObjectId(req.params.id);
-    const data = await Recipe.findOne({ _id:  o_id});
 
-    if (data == null) return;
-    data.imgPath = `/images/${data.imgPath}`;
+    try {
+        const data = await Recipe.findOne({ _id: o_id });
 
-    res.json(data);
+        if (data == null) return;
+        data.imgPath = `/images/${data.imgPath}`;
+
+        res.json(data);
+
+    } catch (err) {
+        res.status(500).json({ type: err });
+    }
 });
 
 export default recipeRouter;
