@@ -36,18 +36,31 @@ userRouter.get('/user/bookmarks/get', verifyToken, async (req, res) => {
     }
 });
 
-userRouter.put('/user/bookmarks/add', verifyToken, async (req, res) => {
+userRouter.put('/user/bookmarks/toggle', verifyToken, async (req, res) => {
     const o_userId = new ObjectId(res.locals.id);
-    const recipeid = req.body.recipeId;
+    const recipeId = req.body.recipeId;
 
     try {
+        const user = await User.find({ _id: o_userId, bookmarkList: recipeId });
+        let message = 'bookmark added';
+        
+        // remove bookmark
+        if (user.length > 0) {
+            await User.findOneAndUpdate(
+                { _id: o_userId },
+                { $pull: { bookmarkList: recipeId } }
+            );
+            message = 'bookmark removed'
+        } else {
+            // add bookmark
+            await User.findOneAndUpdate(
+                { _id: o_userId },
+                { $addToSet: { bookmarkList: recipeId } }
+            );
+        }
+        
 
-        await User.findOneAndUpdate(
-            { _id: o_userId },
-            { $addToSet: { bookmarkList: recipeid } }
-        );
-
-        res.status(200).json({ message: 'bookmark added' });
+        res.status(200).json({ message: message });
     } catch (err) {
         res.status(500).json({ type: err });
     }

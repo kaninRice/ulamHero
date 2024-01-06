@@ -21,7 +21,7 @@
     text-decoration: none;
 }
 
-span {
+.appName span {
     color: var(--accent-3);
 }
 

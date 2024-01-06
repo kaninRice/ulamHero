@@ -1,4 +1,5 @@
 import styles from './Recipe.module.css'
+import BookmarkIcon from '../../assets/icons/BookmarkIcon.svg?react';
 
 import { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
@@ -6,7 +7,7 @@ import { useParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 
-import { SERVER_URL, GET_ONE_RECIPE_URI, ADD_BOOKMARK_URI } from '../../config/config';
+import { SERVER_URL, GET_ONE_RECIPE_URI, TOGGLE_BOOKMARK_URI } from '../../config/config';
 import UserTokenContext from '../../util/UserTokenContext';
 
 
@@ -21,19 +22,20 @@ type recipeObject = {
         instructions: [string]
     }];
     notes: [string];
+    isBookmarked: boolean;
 };
 
 function Recipe() {
     const { recipeId } = useParams();
     const fetchRecipeUrl = SERVER_URL + GET_ONE_RECIPE_URI + `/${recipeId}`;
+
     const [recipe, setRecipe] = useState<recipeObject>();
 
     const { userToken } = useContext(UserTokenContext);
-    const addBookmarkUrl = SERVER_URL + ADD_BOOKMARK_URI;
+    const toggleBookmarkUri = SERVER_URL + TOGGLE_BOOKMARK_URI;
 
-    const handleBookmark = () => {
-        console.log('test')
-        fetch(addBookmarkUrl, {
+    const toggleBookmark = () => {
+        fetch(toggleBookmarkUri, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -44,7 +46,13 @@ function Recipe() {
     }
 
     const fetchRecipe = () => {
-        fetch(fetchRecipeUrl)
+        fetch(fetchRecipeUrl, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userToken}`,
+            },
+        })
             .then((res) => {
                 return res.json();
             })
@@ -67,15 +75,19 @@ function Recipe() {
             <section className={styles.bodySection}>
                 <div className={styles.contentContainer}>
                     <div className={styles.contentBody}>
-                        <p className={styles.description}>{recipe?.description}</p>
+                        <p className={styles.description}>
+                            {recipe?.description}
+                        </p>
 
                         <section className={styles.ingredientsSection}>
                             <h2>Ingredients</h2>
                             <ul>
                                 {recipe != null &&
-                                    recipe.ingredients.map((ingredient, index) => (
-                                        <li key={index}>{ingredient}</li>
-                                    ))}
+                                    recipe.ingredients.map(
+                                        (ingredient, index) => (
+                                            <li key={index}>{ingredient}</li>
+                                        )
+                                    )}
                             </ul>
                         </section>
 
@@ -97,7 +109,10 @@ function Recipe() {
                                             >
                                                 {step != null &&
                                                     step.instructions.map(
-                                                        (instruction, index) => (
+                                                        (
+                                                            instruction,
+                                                            index
+                                                        ) => (
                                                             <li key={index}>
                                                                 {instruction}
                                                             </li>
@@ -110,7 +125,13 @@ function Recipe() {
                         </section>
 
                         <section className={styles.userActions}>
-                            <button onClick={handleBookmark}>Bookmark</button>
+                            <button
+                                className={styles.bookmarkBtn}
+                                onClick={toggleBookmark}
+                            >
+                                <BookmarkIcon className={styles.bookmarkIcon} />
+                                <span >Bookmark</span>
+                            </button>
                         </section>
                     </div>
 

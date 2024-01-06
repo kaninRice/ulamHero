@@ -5,5 +5,5 @@ export const GET_ONE_RECIPE_URI = '/recipes';
 export const REGISTER_URI = '/auth/register';
 export const LOGIN_URI = '/auth/login';
 export const GET_USER_BOOKMARK_URI = '/user/bookmarks/get';
-export const ADD_BOOKMARK_URI = '/user/bookmarks/add';
+export const TOGGLE_BOOKMARK_URI = '/user/bookmarks/toggle';
 export const DELETE_USER_URI = '/user/delete';
