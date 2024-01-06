@@ -1,8 +1,9 @@
 import styles from './LoginPrompt.module.css'
 import BookmarkIcon from '../../assets/icons/BookmarkIcon.svg?react';
 
-import { LOGIN_URI, REGISTER_URI, SERVER_URL } from '../../config/config';
 import { useState, useContext } from 'react';
+
+import { LOGIN_URI, REGISTER_URI, SERVER_URL } from '../../config/config';
 import UserTokenContext from '../../util/UserTokenContext';
 
 function LoginForm() {

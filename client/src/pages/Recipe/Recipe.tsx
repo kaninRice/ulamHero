@@ -1,12 +1,12 @@
 import styles from './Recipe.module.css'
 
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 
-import { SERVER_URL, RECIPE_URI, ADD_BOOKMARK_URI } from '../../config/config';
+import { SERVER_URL, GET_RECIPE_URI, ADD_BOOKMARK_URI } from '../../config/config';
 import UserTokenContext from '../../util/UserTokenContext';
 
 
@@ -25,7 +25,7 @@ type recipeObject = {
 
 function Recipe() {
     const { recipeId } = useParams();
-    const fetchRecipeUrl = SERVER_URL + RECIPE_URI + `/${recipeId}`;
+    const fetchRecipeUrl = SERVER_URL + GET_RECIPE_URI + `/${recipeId}`;
     const [recipe, setRecipe] = useState<recipeObject>();
 
     const { userToken } = useContext(UserTokenContext);

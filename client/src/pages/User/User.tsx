@@ -8,7 +8,7 @@ import { Dispatch, SetStateAction, useContext, useEffect, useState } from "react
 import { Link } from 'react-router-dom'
 
 import UserTokenContext from "../../util/UserTokenContext";
-import { SERVER_URL, USER_BOOKMARK_URI, DELETE_USER_URI } from '../../config/config';
+import { SERVER_URL, GET_USER_BOOKMARK_URI, DELETE_USER_URI } from '../../config/config';
 
 type recipeItem = {
     _id: string;
@@ -86,7 +86,7 @@ function UserContent({
 }
 
 function User() {
-    const url = SERVER_URL + USER_BOOKMARK_URI;
+    const url = SERVER_URL + GET_USER_BOOKMARK_URI;
     const { userToken } = useContext(UserTokenContext);
     const [bookmarkList, setBookmarkList] = useState<recipeItem[]>([])
 
@@ -108,6 +108,7 @@ function User() {
 
     useEffect(() => {
         fetchBookmarkList();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userToken])
 
     return (
