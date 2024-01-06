@@ -62,7 +62,11 @@ function Home() {
                 <ul>
                     {featuredRecipes.length > 0 &&
                         featuredRecipes.map((recipe) => (
-                            <Link to={`/recipe/${recipe._id}`} className={styles.link}>
+                            <Link
+                                to={`/recipe/${recipe._id}`}
+                                className={styles.link}
+                                key={recipe._id}
+                            >
                                 <li>
                                     <img src={SERVER_URL + recipe.imgPath} />
                                     <p>{recipe.name}</p>

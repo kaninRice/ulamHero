@@ -18,6 +18,10 @@
     align-items: center;
 }
 
+.loginCTA p {
+    text-align: center;
+}
+
 .loginCTA .icon {
     height: 320px;
     width: 320px;

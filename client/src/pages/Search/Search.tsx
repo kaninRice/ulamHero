@@ -98,6 +98,7 @@ function Browse() {
                               <Link
                                   to={`/recipe/${recipe._id}`}
                                   className={styles.link}
+                                  key={recipe._id}
                               >
                                   <li>
                                       <img src={SERVER_URL + recipe.imgPath} />

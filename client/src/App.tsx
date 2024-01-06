@@ -12,8 +12,12 @@ function App() {
       <>
           <UserContext.Provider value={userTokenState}>
               <Routes>
-                  {routes.map((route) => (
-                      <Route path={route.path} element={route.element}></Route>
+                  {routes.map((route, index) => (
+                      <Route
+                          path={route.path}
+                          element={route.element}
+                          key={index}
+                      />
                   ))}
               </Routes>
           </UserContext.Provider>

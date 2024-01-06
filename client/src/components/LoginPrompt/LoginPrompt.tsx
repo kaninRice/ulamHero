@@ -78,8 +78,8 @@ function LoginPrompt() {
     return (
         <div className={styles.loginPrompt}>
             <section className={styles.loginCTA}>
-                <BookmarkIcon className={styles.icon}/>
-                Login to save recipes!
+                <BookmarkIcon className={styles.icon} />
+                <p>Login to save recipes!</p>
             </section>
 
             <LoginForm />

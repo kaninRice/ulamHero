@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 
-import { SERVER_URL, GET_RECIPE_URI, ADD_BOOKMARK_URI } from '../../config/config';
+import { SERVER_URL, GET_ONE_RECIPE_URI, ADD_BOOKMARK_URI } from '../../config/config';
 import UserTokenContext from '../../util/UserTokenContext';
 
 
@@ -25,7 +25,7 @@ type recipeObject = {
 
 function Recipe() {
     const { recipeId } = useParams();
-    const fetchRecipeUrl = SERVER_URL + GET_RECIPE_URI + `/${recipeId}`;
+    const fetchRecipeUrl = SERVER_URL + GET_ONE_RECIPE_URI + `/${recipeId}`;
     const [recipe, setRecipe] = useState<recipeObject>();
 
     const { userToken } = useContext(UserTokenContext);
@@ -73,8 +73,8 @@ function Recipe() {
                             <h2>Ingredients</h2>
                             <ul>
                                 {recipe != null &&
-                                    recipe.ingredients.map((ingredient) => (
-                                        <li>{ingredient}</li>
+                                    recipe.ingredients.map((ingredient, index) => (
+                                        <li key={index}>{ingredient}</li>
                                     ))}
                             </ul>
                         </section>
@@ -84,8 +84,8 @@ function Recipe() {
 
                             <ol className={styles.stepsList}>
                                 {recipe != null &&
-                                    recipe.steps.map((step) => (
-                                        <li>
+                                    recipe.steps.map((step, index) => (
+                                        <li key={index}>
                                             <span className={styles.stepTitle}>
                                                 {step.title}
                                             </span>
@@ -97,8 +97,8 @@ function Recipe() {
                                             >
                                                 {step != null &&
                                                     step.instructions.map(
-                                                        (instruction) => (
-                                                            <li>
+                                                        (instruction, index) => (
+                                                            <li key={index}>
                                                                 {instruction}
                                                             </li>
                                                         )
