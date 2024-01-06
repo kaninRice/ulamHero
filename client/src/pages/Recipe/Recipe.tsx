@@ -1,12 +1,13 @@
 import styles from './Recipe.module.css'
 
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 
-import { SERVER_URL, RECIPE_URI } from '../../config/config';
+import { SERVER_URL, RECIPE_URI, ADD_BOOKMARK_URI } from '../../config/config';
+import UserTokenContext from '../../util/UserTokenContext';
 
 
 type recipeObject = {
@@ -24,11 +25,26 @@ type recipeObject = {
 
 function Recipe() {
     const { recipeId } = useParams();
-    const url = SERVER_URL + RECIPE_URI + `/${recipeId}`;
+    const fetchRecipeUrl = SERVER_URL + RECIPE_URI + `/${recipeId}`;
     const [recipe, setRecipe] = useState<recipeObject>();
 
+    const { userToken } = useContext(UserTokenContext);
+    const addBookmarkUrl = SERVER_URL + ADD_BOOKMARK_URI;
+
+    const handleBookmark = () => {
+        console.log('test')
+        fetch(addBookmarkUrl, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userToken}`,
+            },
+            body: JSON.stringify({ recipeId: `${recipe?._id}` }),
+        });
+    }
+
     const fetchRecipe = () => {
-        fetch(url)
+        fetch(fetchRecipeUrl)
             .then((res) => {
                 return res.json();
             })
@@ -91,6 +107,10 @@ function Recipe() {
                                         </li>
                                     ))}
                             </ol>
+                        </section>
+
+                        <section className={styles.userActions}>
+                            <button onClick={handleBookmark}>Bookmark</button>
                         </section>
                     </div>
 

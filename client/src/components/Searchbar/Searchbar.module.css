@@ -6,7 +6,7 @@
     align-items: stretch;
 }
 
-input[type=text] {
+.searchbarContainer input[type=text] {
     --border-radius: 16px;
 
     flex-grow: 1;
@@ -21,12 +21,12 @@ input[type=text] {
     overflow: auto;
 }
 
-input[type=text]::placeholder {
+.searchbarContainer input[type=text]::placeholder {
     color: #646462;
     font-size: 2.4rem;
 }
 
-input[type=text]:focus {
+.searchbarContainer input[type=text]:focus {
     outline: none;
 }
 

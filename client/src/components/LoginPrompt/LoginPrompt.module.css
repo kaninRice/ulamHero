@@ -1,0 +1,96 @@
+.loginPrompt {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+}
+
+.loginCTA {
+    font-size: 64px;
+    font-family: var(--font-family);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginCTA .icon {
+    height: 320px;
+    width: 320px;
+}
+
+.loginForm {
+    --border-radius: 16px;
+
+    width: 50%;
+    padding: 16px 32px;
+
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.formInputContainer {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.formInputContainer input {
+    width: 100%;
+
+    font-size: 2.4rem;
+    font-family: var(--font-family);
+
+    line-height: 160%;
+}
+
+.formInputContainer input::placeholder {
+    color: #646462;
+    font-size: 2.4rem;
+}
+
+.formInputContainer input:focus {
+    outline: none;
+}
+
+.formButtonContainer {
+    width: 40%;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.formButtonContainer button {
+    color: white;
+    background-color: var(--accent-3);
+
+    width: 100%;
+    padding: 12px 32px;
+
+    border: none;
+    border-radius: 8px;
+}
+
+.formButtonContainer .signIn {
+    color: var(--accent-3);
+    background-color: var(--accent-2);
+}
+
+.loginForm input {
+    border: none;
+    border-radius: 0;
+    border-bottom: 2px solid var(--accent-1);
+}

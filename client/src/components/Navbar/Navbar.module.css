@@ -25,8 +25,20 @@ span {
     color: var(--accent-3);
 }
 
-ul {
+.navContainer ul {
     list-style: none;
+
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.icon {
+    fill: white;
+}
+
+.icon:hover {
+    fill: var(--accent-4);
 }
 
 .navOptions {
