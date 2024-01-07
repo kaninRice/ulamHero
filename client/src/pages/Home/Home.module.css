@@ -1,0 +1,145 @@
+.banner {
+    height: 100vh;
+    width: 100%;
+
+    background-image: url('../../assets/banner.jpg');
+    background-size: cover;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.bannerContent {
+    margin: 0 12.5% 64px 12.5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.callToAction {
+    color: white;
+    font-size: 96px;
+    font-weight: var(--fw-semi-bold);
+}
+
+.searchBarContainer {
+    font-weight: var(--fw-medium);
+    width: 743px;
+}
+
+.featuredSection {
+    padding: 24px 0;
+    height: auto;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    gap: 16px;
+}
+
+h2 {
+    font-size: 3.2rem;
+    font-weight: var(--fw-semi-bold);
+}
+
+.featuredSection ul {
+    height: 90%;
+    width: 75%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 32px;
+}
+
+.featuredSection .link {
+    color: black;
+    text-decoration: none;
+}
+
+.featuredSection li {
+    --img-size: 500px;
+    --border-radius: 16px;
+
+    height: calc(var(--img-size) + 105px);
+    width: var(--img-size);
+
+    padding-bottom: 16px;
+
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 16px;
+}
+
+.featuredSection li:hover {
+    transform: translate3d(-2px, -2px, 0px);
+}
+
+.featuredSection img {
+    --img-size: 500px;
+    --border-radius: 16px;
+
+    height: var(--img-size);
+    width: var(--img-size);
+
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.featuredSection p {
+    padding-left: 16px;
+
+    font-size: 3.2rem;
+    font-weight: var(--fw-medium);
+
+    text-wrap: wrap;
+}
+
+@media only screen and (max-width: 2040px) {
+    .featuredSection ul {
+        justify-content: space-around;
+    }
+}
+
+@media only screen and (max-width: 1980px) {
+    .bannerContent {
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: 16px;
+    }
+
+    .searchBarContainer {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .callToAction {
+        font-size: 72px;
+    }
+    
+    .featuredSection ul {
+        flex-direction: column;
+    }
+}
+
+
+@media only screen and (max-width: 520px) {
+    .featuredSection li {
+        --image-size: 75vw;
+        height: calc(var(--img-size) + 30%);
+        width: var(--image-size);
+    }
+
+    img {
+        --image-size: 75vw;
+        height: var(--image-size);
+        width: var(--image-size);
+    }
+}

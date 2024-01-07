@@ -1,0 +1,51 @@
+.navContainer {
+    padding: 0 12.5%;
+
+    height: 90px;
+    background-image: linear-gradient(black, rgba(255,255,255,0));
+    
+    position: sticky;
+    top: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.appName {
+    color: white;
+
+    font-size: 48px;
+    font-weight: var(--fw-semi-bold);
+
+    text-decoration: none;
+}
+
+.appName span {
+    color: var(--accent-3);
+}
+
+.navContainer ul {
+    list-style: none;
+
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.icon {
+    fill: white;
+}
+
+.icon:hover {
+    fill: var(--accent-4);
+}
+
+.navOptions {
+    color: white;
+
+    font-size: 24px;
+    font-weight: var(--fw-semi-bold);
+    
+    text-decoration: none;
+}

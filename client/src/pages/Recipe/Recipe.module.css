@@ -1,0 +1,126 @@
+.navBar {
+    width: 100%;
+
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+
+.bodySection {
+    flex-grow: 1;
+
+    height: 100vh;
+    width: 100%;
+
+    overflow-x: hidden;
+    display: flex;
+}
+
+.contentContainer {
+    width: 60%;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.contentBody {
+    --navbar-height: 90px;
+    --content-padding: 32px;
+    
+    flex-grow: 1;
+
+    padding: calc(var(--navbar-height) + var(--content-padding)) var(--content-padding) var(--content-padding) 12.5vw;
+
+    font-family: var(--font-family);
+    font-size: 1.6rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+}
+
+.ingredientsSection, .stepsSection {
+    line-height: 160%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.ingredientsSection ul {
+    list-style-type: disc;
+    list-style-position: inside;
+}
+
+.stepsList {
+    font-weight: var(--fw-semi-bold);
+    list-style-position: inside;
+}
+
+.instructionsList {
+    padding-left: 32px;
+    font-weight: normal;
+
+    list-style-type: lower-alpha;
+    list-style-position: inside;
+}
+
+.stepTitle {
+    color: black;
+    font-weight: var(--fw-semi-bold);
+}
+
+.bookmarkBtn {
+    background-color: transparent;
+
+    font-size: 1.6rem;
+    font-family: var(--font-family);
+
+    border: none;
+
+    display: flex;
+    align-items: center;
+}
+
+.bookmarkIcon {
+    --icon-size: 24px;
+
+    height: var(--icon-size);
+    width: var(--icon-size);
+}
+
+.footerSection {
+    height: 118px;
+    width: 100vw;
+}
+
+.imageContainer {
+    height: 100vh;
+    width: 40%;
+
+    position: fixed;
+    right: 0;
+
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imageContainer img {
+    min-height: 100%;
+    min-width: 100%;
+    object-fit: cover;
+}
+
+@media only screen and (max-width: 900px) {
+    .contentBody {
+        width: 75vw;
+    }
+    
+    .imageContainer {
+        display: none;
+    }
+}

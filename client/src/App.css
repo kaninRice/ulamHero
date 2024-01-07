@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+#root {
+  --font-family: 'Inter', sans-serif;
+  --fw-semi-bold: 600;
+  --fw-medium: 500;
+  --accent-1: #cec3c1;
+  --accent-2: #fbf9f5;
+  --accent-3: #7e892b;
+  --accent-4: #af5b73;
+  --sem-red: #c74958;
+
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  
+  font-family: var(--font-family);
+}

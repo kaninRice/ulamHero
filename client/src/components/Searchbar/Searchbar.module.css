@@ -1,0 +1,44 @@
+.searchbarContainer {
+    height: 64px;
+    width: 100%;
+
+    display: flex;
+    align-items: stretch;
+}
+
+.searchbarContainer input[type=text] {
+    --border-radius: 16px;
+
+    flex-grow: 1;
+    flex-shrink: 1;
+
+    padding: var(--border-radius);
+    font-size: 2.4rem;
+    
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+    border-style: none;
+
+    overflow: auto;
+}
+
+.searchbarContainer input[type=text]::placeholder {
+    color: #646462;
+    font-size: 2.4rem;
+}
+
+.searchbarContainer input[type=text]:focus {
+    outline: none;
+}
+
+.searchbarContainer button {
+    --border-radius: 16px;
+
+    flex-shrink: 0;
+    background-color: var(--accent-1);
+
+    padding-right: calc(var(--border-radius) / 2);
+    width: 89px;
+
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    border: none;
+}
