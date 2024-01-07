@@ -2,12 +2,12 @@ import styles from './Recipe.module.css'
 import BookmarkIcon from '../../assets/icons/BookmarkIcon.svg?react';
 
 import { useEffect, useState, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 
-import { SERVER_URL, GET_ONE_RECIPE_URI, TOGGLE_BOOKMARK_URI } from '../../config/config';
+import { SERVER_URL, GET_ONE_RECIPE_URI, ADD_BOOKMARK_URI, DELETE_BOOKMARK_URI, VERIFY_BOOKMARK_URI } from '../../config/config';
 import UserTokenContext from '../../util/UserTokenContext';
 
 
@@ -22,20 +22,47 @@ type recipeObject = {
         instructions: [string]
     }];
     notes: [string];
-    isBookmarked: boolean;
 };
 
 function Recipe() {
     const { recipeId } = useParams();
     const fetchRecipeUrl = SERVER_URL + GET_ONE_RECIPE_URI + `/${recipeId}`;
-
     const [recipe, setRecipe] = useState<recipeObject>();
 
     const { userToken } = useContext(UserTokenContext);
-    const toggleBookmarkUri = SERVER_URL + TOGGLE_BOOKMARK_URI;
+    const navigate = useNavigate();
 
-    const toggleBookmark = () => {
-        fetch(toggleBookmarkUri, {
+    const addBookmarkUrl = SERVER_URL + ADD_BOOKMARK_URI;
+    const deleteBookmarkUrl = SERVER_URL + DELETE_BOOKMARK_URI;
+    const verifyBookmarkUrl = SERVER_URL + VERIFY_BOOKMARK_URI;
+
+    const handleBookmark = async () => {
+        if (userToken != '') {
+            // check if recipe is bookmarked
+            fetch(`${verifyBookmarkUrl}/${recipe?._id}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${userToken}`,
+                },
+            })
+                .then((res) => {
+                    return res.json();
+                })
+                .then((data) => {
+                    if (data.isBookmarked) {
+                        deleteBookmark();
+                    } else {
+                        addBookmark();
+                    }
+                });
+        } else {
+            navigate(`/user`);
+        }
+    }
+
+    const addBookmark = () => {
+        fetch(addBookmarkUrl, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -45,14 +72,19 @@ function Recipe() {
         });
     }
 
-    const fetchRecipe = () => {
-        fetch(fetchRecipeUrl, {
-            method: 'GET',
+    const deleteBookmark = () => {
+        fetch(deleteBookmarkUrl, {
+            method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${userToken}`,
             },
-        })
+            body: JSON.stringify({ recipeId: `${recipe?._id}` }),
+        });
+    }
+
+    const fetchRecipe = () => {
+        fetch(fetchRecipeUrl)
             .then((res) => {
                 return res.json();
             })
@@ -126,11 +158,11 @@ function Recipe() {
 
                         <section className={styles.userActions}>
                             <button
+                                onClick={handleBookmark}
                                 className={styles.bookmarkBtn}
-                                onClick={toggleBookmark}
                             >
                                 <BookmarkIcon className={styles.bookmarkIcon} />
-                                <span >Bookmark</span>
+                                Bookmark
                             </button>
                         </section>
                     </div>
