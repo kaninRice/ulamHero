@@ -134,5 +134,5 @@ To run this project, you will need to add the following environment variables to
 #### Delete user account
 
 ```http
-  DELETE /user/bookmarks/delete
+  DELETE /user/delete
 ```
