@@ -63,17 +63,6 @@ To run this project, you will need to add the following environment variables to
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. ID of recipe to fetch |
 
-
-#### Query if current user bookmarked the recipe
-
-```http
-  GET /recipes/verify-bookmark/${id}
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. ID of recipe to check |
-
 #### Search recipe based on keywords
 
 ```http
@@ -94,6 +83,8 @@ To run this project, you will need to add the following environment variables to
 | :-------- | :------- | :-------------------------------- |
 | `username`| `string` | **Required**. Username of the account |
 | `password`| `string` | **Required**. password of the account |
+
+#### Login
 
 ```http
   POST /login
@@ -130,6 +121,16 @@ To run this project, you will need to add the following environment variables to
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `recipeId`| `string` | **Required**. ID of recipe to remove |
+
+#### Query if current user bookmarked the recipe
+
+```http
+  GET /recipes/verify-bookmark/${id}
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. ID of recipe to check |
 
 #### Delete user account
 
